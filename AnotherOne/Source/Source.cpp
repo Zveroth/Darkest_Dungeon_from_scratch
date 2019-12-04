@@ -31,5 +31,6 @@ int main()
 	{
 		FatalError_Size("Couldn't allocate memory for the engine class (%d B)\n\n", sizeof(LEngine));
 	}
+
 	return 0;
 }
