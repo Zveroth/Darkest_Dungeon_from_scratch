@@ -1,10 +1,8 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
-#include "assert.h"
-#include "stdio.h"
-
 #include "Renderer.h"
+#include "Debugging/DebugMacros.h"
 
 
 LRenderer::LRenderer() : m_Window(nullptr)
@@ -19,27 +17,23 @@ LRenderer::~LRenderer()
 
 void LRenderer::Initialize()
 {
-	//OpenGL
-	if (!glfwInit())
+	if (!glfwInit())//Start initializing OpenGl
 	{
-		printf("Couldn't initialize glfw\n\n");
-		assert(false);
+		FatalError("Couldn't initialize glfw\n\n");
 	}
 
-	m_Window = glfwCreateWindow(960, 540, "Help", nullptr, nullptr);
+	m_Window = glfwCreateWindow(960, 540, "Help", nullptr, nullptr);//Create an OpenGl window
 	if (!m_Window)
 	{
-		printf("Couldn't create a window\n\n");
-		assert(false);
+		glfwTerminate();//Clean up
+		FatalError("Couldn't create a window\n\n");
 	}
 
 	glfwMakeContextCurrent(m_Window);
 
-	if (glewInit() != GLEW_OK)
+	if (glewInit() != GLEW_OK)//Finalize
 	{
-		glfwTerminate();
-		printf("Couldn't initialize glew\n\n");
-		assert(false);
+		glfwTerminate();//Clean up
+		FatalError("Couldn't initialize glew\n\n");
 	}
-	//--OpenGL
 }

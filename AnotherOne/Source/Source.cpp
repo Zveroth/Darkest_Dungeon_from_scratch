@@ -2,6 +2,7 @@
 #include "assert.h"
 #include "stdio.h"
 
+#include "Debugging/DebugMacros.h"
 #include "Engine/Engine.h"
 
 /*Second attempt at making something from scratch.
@@ -14,18 +15,21 @@ irrklang for sound
 
 int main()
 {
-	LEngine* Engine = new LEngine();
-	if (Engine)
-	{
-		Engine->Initialize();
+	LEngine* Engine = new LEngine();//Create a new Engine instance
 
-		Engine->Terminate();
-		delete Engine;
+	if (Engine)//Safety check
+	{
+		LEngine::Engine = Engine;//Set the global getter for the enigne
+		Engine->Initialize();//Initialize the subsystems
+
+		//Engine->GameLoop();
+
+		Engine->Terminate();//Destroy all subsystems
+		delete Engine;//Final clean up
 	}
 	else
 	{
-		printf("Couldn't allocate memory for the engine class (%d B)\n\n", sizeof(LEngine));
-		assert(false);
+		FatalError_Size("Couldn't allocate memory for the engine class (%d B)\n\n", sizeof(LEngine));
 	}
 	return 0;
 }
