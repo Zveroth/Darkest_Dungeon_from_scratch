@@ -10,23 +10,18 @@ class LInputHandler
 
 	friend class LGameLogicSystem;
 
-public:
-
-	//Constructor sets m_ProcessedInputs for now
-	LInputHandler();
-
-	//Input handling calls
-	void Initialize(LGameLogicSystem* OwningLogic);
-
-	void ProcessMouseInput(GLFWwindow* window, int button, int action, int mods);
-
 private:
 
-	void ProcessKeyboardInput();
+	//Set the input handling calls
+	static void Initialize(LGameLogicSystem* OwningLogic);
+
+	static void ProcessMouseInput(GLFWwindow* window, int button, int action, int mods);
+
+	static void ProcessKeyboardInput(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 	//List of the inputs that will be passed down the input chain
-	std::forward_list<unsigned int> m_ProcessedInputs;
+	static std::forward_list<unsigned int> m_ProcessedInputs;
 
 	//Refrence to the owner
-	LGameLogicSystem* m_OwningLogic;
+	static LGameLogicSystem* m_OwningLogic;
 };

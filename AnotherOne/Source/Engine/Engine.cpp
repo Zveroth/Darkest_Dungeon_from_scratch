@@ -1,7 +1,7 @@
+#include "GLFW/glfw3.h"
+
 #include "Engine.h"
 #include "Debugging/DebugMacros.h"
-
-#include "GLFW/glfw3.h"
 
 
 LEngine* LEngine::Engine = nullptr;
@@ -38,6 +38,18 @@ void LEngine::Initialize()
 	if (!m_SoundSystem)
 		FatalError_Size("Couldn't allocate memory for sound system class (%d B)\n\n", sizeof(LSoundSystem));
 	m_SoundSystem->Initialize();
+}
+
+void LEngine::GameLoop()
+{
+	m_GameLogic->SystemLoop();//Game logic is ran on another thread
+
+	m_Renderer->SystemLoop();//Rendering is ran on the main thread and has to be called last
+
+	std::unique_lock<std::mutex> SafetyLock(LGameLogicSystem::LogicMutex);//Get access to the shared flag
+	m_GameLogic->bCloseSystem = true;//The game logic will end after it's current tick 
+	SafetyLock.unlock();//Release the resource so that game logic can read it
+	//Game logic thread is synced in the system's destructor
 }
 
 void LEngine::Terminate()

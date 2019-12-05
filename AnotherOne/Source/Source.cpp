@@ -22,7 +22,7 @@ int main()
 		LEngine::Engine = Engine;//Set the global getter for the enigne
 		Engine->Initialize();//Initialize the subsystems
 
-		//Engine->GameLoop();
+		Engine->GameLoop();//The magic happens here
 
 		Engine->Terminate();//Destroy all subsystems
 		delete Engine;//Final clean up

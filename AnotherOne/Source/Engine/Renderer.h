@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 struct GLFWwindow;
 
 class LRenderer
@@ -16,6 +15,10 @@ public:
 
 	//Prepare OpenGl for work
 	void Initialize();
+
+	//Loop of this system
+	//Rendering takes place here
+	void SystemLoop();
 
 private:
 

@@ -37,3 +37,18 @@ void LRenderer::Initialize()
 		FatalError("Couldn't initialize glew\n\n");
 	}
 }
+
+void LRenderer::SystemLoop()
+{
+	glClearColor(0.25f, 0.25f, 0.25f, 1.0f);//The default color of pixels that are not drawn
+
+	while (!glfwWindowShouldClose(m_Window))
+	{
+		glClear(GL_COLOR_BUFFER_BIT);//Clear buffers
+
+		//printf("Render loop\n");
+
+		glfwSwapBuffers(m_Window);
+		glfwPollEvents();
+	}
+}

@@ -21,6 +21,9 @@ public:
 	//If someting goes wrong, the program will be terminated
 	void Initialize();
 
+	//Call the subsystems' loops and perform a clean exit once done
+	void GameLoop();
+
 	//Terminate all subsystems
 	//Note that engine still needs a delete call for itself
 	void Terminate();
