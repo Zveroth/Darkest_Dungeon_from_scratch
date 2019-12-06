@@ -1,10 +1,16 @@
 #pragma once
 #include "thread"
 #include "mutex"
+#include "memory"
 
+
+class HWorld;
+class HActor;
 
 class LGameLogicSystem
 {
+
+	friend class LEngine;
 
 public:
 
@@ -24,6 +30,9 @@ public:
 	//System closing flag
 	bool bCloseSystem;
 
+	template<typename T>
+	std::shared_ptr<T> CreateActor();
+
 private:
 
 	//Game logic is processed here
@@ -31,4 +40,6 @@ private:
 
 	//Thread handle
 	std::thread LogicThread;
+
+	HWorld* World;
 };

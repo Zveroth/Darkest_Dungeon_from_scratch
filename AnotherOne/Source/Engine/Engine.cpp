@@ -58,3 +58,9 @@ void LEngine::Terminate()
 	delete m_SoundSystem;
 	delete m_GameLogic;
 }
+
+template<typename T>
+std::shared_ptr<T> LEngine::CreateActor()
+{
+	return m_GameLogic->CreateActor<T>();
+}

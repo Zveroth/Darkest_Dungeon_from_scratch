@@ -4,6 +4,8 @@
 #include "GameLogicSystem.h"
 
 
+class HActor;
+
 //Engine class manages all the other subsystems 
 //and provides communication between them
 class LEngine
@@ -30,6 +32,11 @@ public:
 
 	//Getter for the OpenGL window
 	inline GLFWwindow* GetWindow() { return m_Renderer->m_Window; }
+	
+	HWorld* GetWorld() { return m_GameLogic->World; }
+
+	template<typename T>
+	std::shared_ptr<T> CreateActor();
 
 private:
 

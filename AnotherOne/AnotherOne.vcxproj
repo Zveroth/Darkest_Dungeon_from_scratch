@@ -157,17 +157,30 @@
     <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Engine\GameLogicSystem.cpp" />
     <ClCompile Include="Source\Engine\InputHandler.cpp" />
+    <ClCompile Include="Source\Engine\Management\World.cpp" />
+    <ClCompile Include="Source\Engine\Objects\Actor.cpp" />
+    <ClCompile Include="Source\Engine\Objects\Components\Component.cpp" />
+    <ClCompile Include="Source\Engine\Objects\Components\RenderComponent.cpp" />
+    <ClCompile Include="Source\Engine\Objects\Components\SpriteComponent.cpp" />
+    <ClCompile Include="Source\Engine\Player\Player.cpp" />
     <ClCompile Include="Source\Engine\Renderer.cpp" />
     <ClCompile Include="Source\Engine\SoundSystem.cpp" />
     <ClCompile Include="Source\External\glm\detail\glm.cpp" />
     <ClCompile Include="Source\External\stb_image\stb_image.cpp" />
     <ClCompile Include="Source\Source.cpp" />
+    <ClCompile Include="Source\Utility\UtilityStatics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Debugging\DebugMacros.h" />
     <ClInclude Include="Source\Engine\Engine.h" />
     <ClInclude Include="Source\Engine\GameLogicSystem.h" />
     <ClInclude Include="Source\Engine\InputHandler.h" />
+    <ClInclude Include="Source\Engine\Management\World.h" />
+    <ClInclude Include="Source\Engine\Objects\Actor.h" />
+    <ClInclude Include="Source\Engine\Objects\Components\Component.h" />
+    <ClInclude Include="Source\Engine\Objects\Components\RenderComponent.h" />
+    <ClInclude Include="Source\Engine\Objects\Components\SpriteComponent.h" />
+    <ClInclude Include="Source\Engine\Player\Player.h" />
     <ClInclude Include="Source\Engine\Renderer.h" />
     <ClInclude Include="Source\Engine\SoundSystem.h" />
     <ClInclude Include="Source\External\glm\common.hpp" />
@@ -414,6 +427,7 @@
     <ClInclude Include="Source\External\glm\vec4.hpp" />
     <ClInclude Include="Source\External\glm\vector_relational.hpp" />
     <ClInclude Include="Source\External\stb_image\stb_image.h" />
+    <ClInclude Include="Source\Utility\UtilityStatics.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\External\glm\detail\func_common.inl" />

@@ -3,11 +3,12 @@
 #include "GameLogicSystem.h"
 #include "InputHandler.h"
 #include "Debugging/DebugMacros.h"
+#include "Management/World.h"
 
 
 std::mutex LGameLogicSystem::LogicMutex;
 
-LGameLogicSystem::LGameLogicSystem() : bCloseSystem(false)
+LGameLogicSystem::LGameLogicSystem() : bCloseSystem(false), World(nullptr)
 {
 
 }
@@ -26,11 +27,17 @@ void LGameLogicSystem::Initialize()
 
 void LGameLogicSystem::SystemLoop()
 {
+	World = new HWorld();
+	if (!World)
+		FatalError_Size("Couldn't allocate memory for world class (%d B)\n\n", sizeof(HWorld));
+
 	LogicThread = std::thread(&LGameLogicSystem::LogicLoop, this);//Set the handle and start running logic
 }
 
 void LGameLogicSystem::LogicLoop()
 {
+	//World->SomeInitialize();
+
 	std::chrono::time_point<std::chrono::high_resolution_clock> PointA = std::chrono::high_resolution_clock::now();
 	while (true)
 	{
@@ -52,4 +59,12 @@ void LGameLogicSystem::LogicLoop()
 			}
 		}
 	}
+}
+
+template<typename T>
+std::shared_ptr<T> CreateActor()
+{
+	std::shared_ptr<T> ptr(new T());
+	//Check its flags and distribute the actor
+	return ptr;
 }
