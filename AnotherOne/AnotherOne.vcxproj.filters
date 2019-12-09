@@ -836,10 +836,10 @@
     <ClInclude Include="Source\Utility\UtilityStatics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Rendering\RenderInfo.h">
+    <ClInclude Include="Source\Engine\Rendering\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Rendering\Texture.h">
+    <ClInclude Include="Source\Engine\Rendering\RenderInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

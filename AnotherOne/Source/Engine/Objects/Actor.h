@@ -12,7 +12,8 @@ class HActor
 
 public:
 
-private:
+//private:
+protected:
 
 	std::forward_list<std::shared_ptr<IComponent>> m_ComponentList;
 };

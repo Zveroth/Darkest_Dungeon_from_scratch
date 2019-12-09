@@ -60,6 +60,7 @@ void LRenderer::SystemLoop()
 			std::shared_ptr<LRenderComponent> Component = *Cache;
 
 			//Do some rendering
+			//Still need to do shaders
 
 			if (Component->bPendingDestroy)//Check if the component is awaiting destruction
 			{
