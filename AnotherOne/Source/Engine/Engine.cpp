@@ -2,6 +2,7 @@
 
 #include "Engine.h"
 #include "Debugging/DebugMacros.h"
+#include "Engine/Objects/Actor.h"
 
 
 LEngine* LEngine::Engine = nullptr;
@@ -46,7 +47,7 @@ void LEngine::GameLoop()
 
 	m_Renderer->SystemLoop();//Rendering is ran on the main thread and has to be called last
 
-	std::unique_lock<std::mutex> SafetyLock(LGameLogicSystem::LogicMutex);//Get access to the shared flag
+	std::unique_lock<std::mutex> SafetyLock(LGameLogicSystem::m_LogicMutex);//Get access to the shared flag
 	m_GameLogic->bCloseSystem = true;//The game logic will end after it's current tick 
 	SafetyLock.unlock();//Release the resource so that game logic can read it
 	//Game logic thread is synced in the system's destructor
@@ -62,5 +63,29 @@ void LEngine::Terminate()
 template<typename T>
 std::shared_ptr<T> LEngine::CreateActor()
 {
-	return m_GameLogic->CreateActor<T>();
+	std::shared_ptr<T> ptr(new T());
+
+	if (ptr)
+	{
+		for (std::shared_ptr<IComponent>& Component : ptr->m_ComponentList)//Check the flags of every component this actor owns at the time of spawning
+		{
+			unsigned int Flags = Component->GetComponentFlags();
+
+			if (Flags & EComponentFlags::RENDERABLE)//Renderable components are added to rendering subsystem
+			{
+				std::unique_lock<std::mutex> SafetyLock(LRenderer::m_PendingComp_Mutex);//Wait until component can be added
+				m_Renderer->m_PendingComponents.push_front(static_cast<LRenderComponent>(Component));
+				SafetyLock.unlock();
+			}
+
+			if (Flags & EComponentFlags::CLICKABLE)
+			{
+				//Do some fancy stuff in game logic
+			}
+		}
+	}
+	else
+		Error("Actor couldn't be spawend - allocation failed.\n");
+
+	return ptr;
 }

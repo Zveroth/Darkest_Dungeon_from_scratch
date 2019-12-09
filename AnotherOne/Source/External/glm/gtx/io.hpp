@@ -13,7 +13,7 @@
 ///
 /// std::[w]ostream support for glm types
 ///
-/// std::[w]ostream support for glm types + qualifier/width/etc. manipulators
+/// std::[w]ostream support for glm types + qualifier/m_Width/etc. manipulators
 /// based on howard hinnant's std::chrono io proposal
 /// [http://home.roadrunner.com/~hinnant/bloomington/chrono_io.html]
 
@@ -55,7 +55,7 @@ namespace glm
 
 			bool       formatted;
 			unsigned   precision;
-			unsigned   width;
+			unsigned   m_Width;
 			char_type  separator;
 			char_type  delim_left;
 			char_type  delim_right;
@@ -86,7 +86,7 @@ namespace glm
 			state_type&     state_;
 			flags_type      flags_;
 			streamsize_type precision_;
-			streamsize_type width_;
+			streamsize_type m_Width_;
 			char_type       fill_;
 			locale_type     locale_;
 
@@ -121,11 +121,11 @@ namespace glm
 			GLM_FUNC_DECL explicit precision(unsigned);
 		};
 
-		struct width
+		struct m_Width
 		{
 			unsigned value;
 
-			GLM_FUNC_DECL explicit width(unsigned);
+			GLM_FUNC_DECL explicit m_Width(unsigned);
 		};
 
 		template<typename CTy>
@@ -155,7 +155,7 @@ namespace glm
 		template<typename CTy, typename CTr>
 		std::basic_ostream<CTy, CTr>& operator<<(std::basic_ostream<CTy, CTr>&, precision const&);
 		template<typename CTy, typename CTr>
-		std::basic_ostream<CTy, CTr>& operator<<(std::basic_ostream<CTy, CTr>&, width const&);
+		std::basic_ostream<CTy, CTr>& operator<<(std::basic_ostream<CTy, CTr>&, m_Width const&);
 		template<typename CTy, typename CTr>
 		std::basic_ostream<CTy, CTr>& operator<<(std::basic_ostream<CTy, CTr>&, delimeter<CTy> const&);
 		template<typename CTy, typename CTr>

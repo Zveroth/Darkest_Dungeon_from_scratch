@@ -164,6 +164,7 @@
     <ClCompile Include="Source\Engine\Objects\Components\SpriteComponent.cpp" />
     <ClCompile Include="Source\Engine\Player\Player.cpp" />
     <ClCompile Include="Source\Engine\Renderer.cpp" />
+    <ClCompile Include="Source\Engine\Rendering\Texture.cpp" />
     <ClCompile Include="Source\Engine\SoundSystem.cpp" />
     <ClCompile Include="Source\External\glm\detail\glm.cpp" />
     <ClCompile Include="Source\External\stb_image\stb_image.cpp" />
@@ -176,12 +177,14 @@
     <ClInclude Include="Source\Engine\GameLogicSystem.h" />
     <ClInclude Include="Source\Engine\InputHandler.h" />
     <ClInclude Include="Source\Engine\Management\World.h" />
+    <ClInclude Include="Source\Engine\Rendering\RenderInfo.h" />
     <ClInclude Include="Source\Engine\Objects\Actor.h" />
     <ClInclude Include="Source\Engine\Objects\Components\Component.h" />
     <ClInclude Include="Source\Engine\Objects\Components\RenderComponent.h" />
     <ClInclude Include="Source\Engine\Objects\Components\SpriteComponent.h" />
     <ClInclude Include="Source\Engine\Player\Player.h" />
     <ClInclude Include="Source\Engine\Renderer.h" />
+    <ClInclude Include="Source\Engine\Rendering\Texture.h" />
     <ClInclude Include="Source\Engine\SoundSystem.h" />
     <ClInclude Include="Source\External\glm\common.hpp" />
     <ClInclude Include="Source\External\glm\detail\compute_common.hpp" />

@@ -334,15 +334,15 @@ namespace glm
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovRH_ZO(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovRH_ZO(T fov, T m_Width, T height, T zNear, T zFar)
 	{
-		assert(width > static_cast<T>(0));
+		assert(m_Width > static_cast<T>(0));
 		assert(height > static_cast<T>(0));
 		assert(fov > static_cast<T>(0));
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / m_Width; ///todo max(m_Width , Height) / min(m_Width , Height)?
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -354,15 +354,15 @@ namespace glm
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovRH_NO(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovRH_NO(T fov, T m_Width, T height, T zNear, T zFar)
 	{
-		assert(width > static_cast<T>(0));
+		assert(m_Width > static_cast<T>(0));
 		assert(height > static_cast<T>(0));
 		assert(fov > static_cast<T>(0));
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / m_Width; ///todo max(m_Width , Height) / min(m_Width , Height)?
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -374,15 +374,15 @@ namespace glm
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovLH_ZO(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovLH_ZO(T fov, T m_Width, T height, T zNear, T zFar)
 	{
-		assert(width > static_cast<T>(0));
+		assert(m_Width > static_cast<T>(0));
 		assert(height > static_cast<T>(0));
 		assert(fov > static_cast<T>(0));
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / m_Width; ///todo max(m_Width , Height) / min(m_Width , Height)?
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -394,15 +394,15 @@ namespace glm
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovLH_NO(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovLH_NO(T fov, T m_Width, T height, T zNear, T zFar)
 	{
-		assert(width > static_cast<T>(0));
+		assert(m_Width > static_cast<T>(0));
 		assert(height > static_cast<T>(0));
 		assert(fov > static_cast<T>(0));
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / m_Width; ///todo max(m_Width , Height) / min(m_Width , Height)?
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -414,52 +414,52 @@ namespace glm
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovZO(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovZO(T fov, T m_Width, T height, T zNear, T zFar)
 	{
 		if(GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_LH_BIT)
-			return perspectiveFovLH_ZO(fov, width, height, zNear, zFar);
+			return perspectiveFovLH_ZO(fov, m_Width, height, zNear, zFar);
 		else
-			return perspectiveFovRH_ZO(fov, width, height, zNear, zFar);
+			return perspectiveFovRH_ZO(fov, m_Width, height, zNear, zFar);
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovNO(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovNO(T fov, T m_Width, T height, T zNear, T zFar)
 	{
 		if(GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_LH_BIT)
-			return perspectiveFovLH_NO(fov, width, height, zNear, zFar);
+			return perspectiveFovLH_NO(fov, m_Width, height, zNear, zFar);
 		else
-			return perspectiveFovRH_NO(fov, width, height, zNear, zFar);
+			return perspectiveFovRH_NO(fov, m_Width, height, zNear, zFar);
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovLH(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovLH(T fov, T m_Width, T height, T zNear, T zFar)
 	{
 		if(GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_ZO_BIT)
-			return perspectiveFovLH_ZO(fov, width, height, zNear, zFar);
+			return perspectiveFovLH_ZO(fov, m_Width, height, zNear, zFar);
 		else
-			return perspectiveFovLH_NO(fov, width, height, zNear, zFar);
+			return perspectiveFovLH_NO(fov, m_Width, height, zNear, zFar);
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovRH(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFovRH(T fov, T m_Width, T height, T zNear, T zFar)
 	{
 		if(GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_ZO_BIT)
-			return perspectiveFovRH_ZO(fov, width, height, zNear, zFar);
+			return perspectiveFovRH_ZO(fov, m_Width, height, zNear, zFar);
 		else
-			return perspectiveFovRH_NO(fov, width, height, zNear, zFar);
+			return perspectiveFovRH_NO(fov, m_Width, height, zNear, zFar);
 	}
 
 	template<typename T>
-	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFov(T fov, T width, T height, T zNear, T zFar)
+	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> perspectiveFov(T fov, T m_Width, T height, T zNear, T zFar)
 	{
 		if(GLM_CONFIG_CLIP_CONTROL == GLM_CLIP_CONTROL_LH_ZO)
-			return perspectiveFovLH_ZO(fov, width, height, zNear, zFar);
+			return perspectiveFovLH_ZO(fov, m_Width, height, zNear, zFar);
 		else if(GLM_CONFIG_CLIP_CONTROL == GLM_CLIP_CONTROL_LH_NO)
-			return perspectiveFovLH_NO(fov, width, height, zNear, zFar);
+			return perspectiveFovLH_NO(fov, m_Width, height, zNear, zFar);
 		else if(GLM_CONFIG_CLIP_CONTROL == GLM_CLIP_CONTROL_RH_ZO)
-			return perspectiveFovRH_ZO(fov, width, height, zNear, zFar);
+			return perspectiveFovRH_ZO(fov, m_Width, height, zNear, zFar);
 		else if(GLM_CONFIG_CLIP_CONTROL == GLM_CLIP_CONTROL_RH_NO)
-			return perspectiveFovRH_NO(fov, width, height, zNear, zFar);
+			return perspectiveFovRH_NO(fov, m_Width, height, zNear, zFar);
 	}
 
 	template<typename T>

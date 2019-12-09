@@ -3,7 +3,12 @@
 
 
 
+LRenderComponent::LRenderComponent() : m_bRenderReady(false)
+{
+
+}
+
 unsigned int LRenderComponent::GetComponentFlags()
 {
-	return ComponentFlags::RENDERABLE;
+	return EComponentFlags::RENDERABLE;
 }

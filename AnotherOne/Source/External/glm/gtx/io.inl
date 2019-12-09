@@ -14,7 +14,7 @@ namespace io
 		: std::locale::facet(a)
 		, formatted(true)
 		, precision(3)
-		, width(1 + 4 + 1 + precision)
+		, m_Width(1 + 4 + 1 + precision)
 		, separator(',')
 		, delim_left('[')
 		, delim_right(']')
@@ -28,7 +28,7 @@ namespace io
 		: std::locale::facet(0)
 		, formatted(a.formatted)
 		, precision(a.precision)
-		, width(a.width)
+		, m_Width(a.m_Width)
 		, separator(a.separator)
 		, delim_left(a.delim_left)
 		, delim_right(a.delim_right)
@@ -44,7 +44,7 @@ namespace io
 		: state_(a)
 		, flags_(a.flags())
 		, precision_(a.precision())
-		, width_(a.width())
+		, m_Width_(a.m_Width())
 		, fill_(a.fill())
 		, locale_(a.getloc())
 	{}
@@ -54,7 +54,7 @@ namespace io
 	{
 		state_.imbue(locale_);
 		state_.fill(fill_);
-		state_.width(width_);
+		state_.m_Width(m_Width_);
 		state_.precision(precision_);
 		state_.flags(flags_);
 	}
@@ -75,7 +75,7 @@ namespace io
 		: value(a)
 	{}
 
-	GLM_FUNC_QUALIFIER width::width(unsigned a)
+	GLM_FUNC_QUALIFIER m_Width::m_Width(unsigned a)
 		: value(a)
 	{}
 
@@ -123,9 +123,9 @@ namespace io
 	}
 
 	template<typename CTy, typename CTr>
-	GLM_FUNC_QUALIFIER std::basic_ostream<CTy, CTr>& operator<<(std::basic_ostream<CTy, CTr>& os, width const& a)
+	GLM_FUNC_QUALIFIER std::basic_ostream<CTy, CTr>& operator<<(std::basic_ostream<CTy, CTr>& os, m_Width const& a)
 	{
-		const_cast<format_punct<CTy>&>(get_facet<format_punct<CTy> >(os)).width = a.value;
+		const_cast<format_punct<CTy>&>(get_facet<format_punct<CTy> >(os)).m_Width = a.value;
 		return os;
 	}
 
@@ -171,7 +171,7 @@ namespace detail
 
 				for(length_t i(0); i < components; ++i)
 				{
-					os << std::setw(fmt.width) << a[i];
+					os << std::setw(fmt.m_Width) << a[i];
 					if(components-1 != i)
 						os << fmt.separator;
 				}

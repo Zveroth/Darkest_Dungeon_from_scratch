@@ -5,5 +5,10 @@
 
 HWorld* UtilityStatics::GetWorld()
 {
-	LEngine::Engine->GetWorld();
+	return LEngine::Engine->GetWorld();
+}
+
+GLFWwindow* UtilityStatics::GetWindow()
+{
+	return LEngine::Engine->GetWindow();
 }

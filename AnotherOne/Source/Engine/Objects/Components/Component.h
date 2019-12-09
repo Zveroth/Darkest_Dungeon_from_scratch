@@ -1,7 +1,7 @@
 #pragma once
 
 
-struct ComponentFlags
+struct EComponentFlags
 {
 	enum Value : unsigned int
 	{
@@ -16,5 +16,11 @@ class IComponent
 
 public:
 
-	virtual unsigned int GetComponentFlags() { return ComponentFlags::NONE; }
+	IComponent() : bPendingDestroy(false) {}
+
+	virtual unsigned int GetComponentFlags() { return EComponentFlags::NONE; }
+
+
+	//Destruction flag, checked by every system individually
+	bool bPendingDestroy;
 };

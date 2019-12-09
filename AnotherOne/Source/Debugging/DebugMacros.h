@@ -30,6 +30,14 @@
 	assert(false);\
 }
 
+#define Error(Message)\
+{\
+	std::ofstream DebugFile;\
+	DebugFile.open("ErrorLog.txt", std::ios_base::app);\
+	DebugFile << Message;\
+	DebugFile.close();\
+}
+
 #else
 
 #define FatalError_Size(Message, ByteSize)\
@@ -42,6 +50,11 @@
 {\
 	printf(Message);\
 	assert(false);\
+}
+
+#define Error(Message)\
+{\
+	printf(Message);\
 }
 
 #endif // !_DEBUG

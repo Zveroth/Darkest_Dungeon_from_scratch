@@ -1,5 +1,5 @@
 #include "InputHandler.h"
-#include "Engine/Engine.h"
+#include "Utility/UtilityStatics.h"
 #include "GameLogicSystem.h"
 
 #include "GLFW/glfw3.h"
@@ -15,8 +15,8 @@ std::forward_list<unsigned int> LInputHandler::m_ProcessedInputs =
 
 void LInputHandler::Initialize(LGameLogicSystem* OwningLogic)
 {
-	glfwSetMouseButtonCallback(LEngine::Engine->GetWindow(), &LInputHandler::ProcessMouseInput);//Set the mouse input callback function
-	glfwSetKeyCallback(LEngine::Engine->GetWindow(), &LInputHandler::ProcessKeyboardInput);//Set the key input callback function
+	glfwSetMouseButtonCallback(UtilityStatics::GetWindow(), &LInputHandler::ProcessMouseInput);//Set the mouse input callback function
+	glfwSetKeyCallback(UtilityStatics::GetWindow(), &LInputHandler::ProcessKeyboardInput);//Set the key input callback function
 
 	LInputHandler::m_OwningLogic = OwningLogic;
 }
